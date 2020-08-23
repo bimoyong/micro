@@ -22,6 +22,13 @@ docker:
 	docker push $(IMAGE_NAME):$(IMAGE_TAG)
 	docker push $(IMAGE_NAME):latest
 
+docker_multiarch:
+	docker buildx build \
+	--push \
+	--platform linux/arm,linux/arm64,linux/amd64 \
+	--tag $(IMAGE_NAME):$(IMAGE_TAG) \
+	--tag $(IMAGE_NAME):latest .
+
 vet:
 	go vet ./...
 
