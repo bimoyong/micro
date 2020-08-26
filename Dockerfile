@@ -21,6 +21,7 @@ RUN apk add ca-certificates && \
     [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 # cleanup to optimize image size
+RUN go clean --i --n --r --x --cache --testcache --modcache
 RUN apk del --purge .build_deps
 RUN rm -rf /go
 
